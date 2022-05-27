@@ -1,4 +1,5 @@
 const anchor = require("@project-serum/anchor");
+const { expect } = require("chai");
 const { SystemProgram } = anchor.web3;
 
 describe("nft-gift-portal", () => {
@@ -24,10 +25,18 @@ describe("nft-gift-portal", () => {
 
     console.log("📝 Your transaction signature", tx);
 
-    // Fetch data from the account.
-    let account = await program.account.baseAccount.fetch(
-      baseAccount.publicKey
-    );
-    console.log("👀 GIF Count", account.totalGifs.toString());
+    let account = await program.account.baseAccount.fetch(baseAccount.publicKey);
+    console.log('👀 GIF Count', account.totalGifs.toString())
+
+    // Call add_gif!
+    await program.rpc.addGif({
+      accounts: {
+        baseAccount: baseAccount.publicKey,
+      },
+    });
+
+    // Get the account again to see what changed.
+    account = await program.account.baseAccount.fetch(baseAccount.publicKey);
+    console.log('👀 GIF Count', account.totalGifs.toString())
   });
 });
