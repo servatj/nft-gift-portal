@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("9J8cC4N5a9KhguUEBoJrBJpbg6FLqbMzuUJiXnBqc96b");
 
 #[program]
 pub mod nft_gift_portal {
